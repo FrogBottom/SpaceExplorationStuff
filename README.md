@@ -1,2 +1,2 @@
 # SpaceExplorationStuff
-Scripts and stuff that I used for Factorio Space Exploration. Spoilers, obviously :)
+Scripts and stuff that we used for Factorio Space Exploration. Spoilers, obviously :)

@@ -4,28 +4,28 @@
 #define GMATH_IMPLEMENTATION
 #include "GMath.h"
 
-// I'm running with symbols 14 and 13.
+
 /*
 The star-mapping research gives us a few of these vectors directly, and we visited enough pyramids to work out
 which symbols are adjacent to each other on this "ball" (technically a pentakis dodecahedron, but whatever).
 
-We did a bit more math to work out how to orient that ball so that it lines up with the vectors we already know,
-and that gives us this big list. Every symbol represents a direction vector in 3D space.
+This program can work out how to orient that ball so that it lines up with the vectors we already know,
+and that gives us a list of vectors. Every symbol represents a direction vector in 3D space.
 */
-
 
 /*
-Computed array of 3D vectors, one per symbol. We've arbitrarily assigned each symbol an ID, just by looking at the texture
-for the symbols in the mod data, and numbering them starting from 1. The first vector in this array corresponds to
-ID 1, and it counts up from there. Only the first 60 symbols have a vector.
+We've arbitrarily assigned each symbol an ID, just by looking at the texture for the symbols in the mod data,
+and numbering them starting from 1. The first vector in this array corresponds to ID 1, and it counts up from there.
+Only the first 60 symbols have a vector, but there are 4 more symbols at the stargate, and 4 more spaces in the 2D map.
 */
-
 
 /*
 The direction vector we are trying to produce. The exploration journal has a big lore entry of a computer log, and it mentions that we were
 traveling in the direction opposite this one when we crashed. Our assumption is that we need to travel in this (reversed) direction to get home!
 */
 static Vec3 desired_vector = {0.43134830415853,-0.77703970963888,0.4584189461005};
+
+// I'm using symbol IDs 14 and 13 from starmapping in order to compute the vectors, but there may be a more precise combination.
 
 s32 main(s32 argc, const char* argv[])
 {
