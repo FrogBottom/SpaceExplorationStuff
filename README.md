@@ -23,6 +23,13 @@ A few other things I noticed:
   * Could be the three corners and the middle, I guess, for symmetry? Not sure. I think we will probably end up with the big triangle, 4 slots with no symbol, and 4 extra symbols.
 * Some symbols can't be used in certain slots in the stargate, for some reason.
 
+Update: Taking a look at the remaining four symbols, I think I'm right:
+
+![Screenshot 2023-08-05 205719](https://github.com/FrogBottom/SpaceExplorationStuff/assets/10749734/5f11b213-adf6-44a6-82dd-9de74efd58b5)
+
+To me, those four look a whole lot like "lower left of a triangle", "lower right of a triangle", "top of a triangle", and "middle of a triangle"...
+
+###  Where to go from here...
 At this point I was thinking about how I might encode stuff if I was designing a similar puzzle. The player has a bunch of vectors, how do you set it up so that they can be combined into a result, but where the order matters? Maybe each symbol is a smaller and smaller offset from the first vector? Then it would feel like you're dialing in closer and closer to your target, which is neat.
 
 Also the little "interburbul" puzzle we did felt kinda, but not quite, related; It involved 3D vectors, but it was about dividing a quad into smaller ones, and interpolating to find the answer. Weird how the grid got more and more dense as we went. Hmm.
@@ -40,6 +47,11 @@ All the symbols correspond to faces on our big ball, and those faces are... tria
 * Take that small triangle, and split it into 64 smaller ones.
 * Repeat with all 8 symbols, zooming in more and more with each one.
 
-So we are picking one triangular face of our ball, and subdividing it more and more and more to get closer and closer to our desired direction. If this is how it works, then we should expect that the resulting vector from the stargate should always be close-ish to whatever the first symbol in the combination is. I went and checked that for the stargate combinations we've tried, and the theory holds!
+So we are picking one triangular face of our ball, and subdividing it more and more and more to get closer and closer to our desired direction. If this is how it works, then we should expect the following:
+* The resulting vector from the stargate should always be close-ish to whatever the first symbol in the combination is.
+* If we enter one symbol and then seven of the "middle of the triangle" symbol, we should just get the symbol for that vector.
+* If we enter one symbol and then seven of the other three "corner of the triangle" symbols, we should get a vector very close to the vertex of the face.
+
+I went and checked some of this with the stargate, and it looks like this theory holds!
 
 Now I just have to put together the 2D triangle map from all 60 pyramid screenshots, and then... find a way like, recursively iterate towards the desired vector using this weird fractal thing.
