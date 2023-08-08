@@ -349,6 +349,7 @@ namespace GMath
         {
             struct {double x, y;};
             struct {double r, g;};
+            struct {double u, v;};
             double data[2];
         };
 		
@@ -394,10 +395,13 @@ namespace GMath
         {
             struct {double x, y, z;};
             struct {double r, g, b;};
+            struct {double u, v, w;};
             struct {IVec2 xy; double ignored_z;};
             struct {double ignored_x; IVec2 yz;};
             struct {IVec2 rg; double ignored_b;};
             struct {double ignored_r; IVec2 gb;};
+            struct {IVec2 uv; double ignored_w;};
+            struct {double ignored_u; IVec2 uv;};
             double data[3];
         };
 		
